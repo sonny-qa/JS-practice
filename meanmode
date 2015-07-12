@@ -1,0 +1,35 @@
+function modeeq (arr){
+    //initiate empty object
+    //mode[x] gives the value, [x] is the key
+    var mode ={}
+    var max =0, count =0
+    
+    arr.forEach(function(x){
+        if (mode[x]){ mode[x]+=1} //if x (current array value) exisits in object, then add +1
+        else {mode[x]=1;} else, set its first instance as 1
+        
+        //check if current x count > max
+        if (count<mode[x]){
+            //update max count with mode[x] key/label
+            max = x
+            //and update the intermeditate count
+            count = mode[x]
+         //console.log(mode)   
+        }
+    }) 
+    return max
+}
+
+function average (arr2){
+    var avg = (arr2.reduce(function(x,y){
+        return x+y
+    }))/(arr2.length)
+    return avg
+}
+
+function MeanMode (array){
+    if (average(array)===modeeq(array)){
+        return 1
+    } else { return 0}
+    
+}
