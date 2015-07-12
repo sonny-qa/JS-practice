@@ -1,0 +1,69 @@
+function getdates (string){
+   
+ //hrs1 = match[2]
+ //mins1 = match[3]
+ //hrs2 = match[6]
+ //mins2 = match[7]
+ //apm1 = match[4]
+ //apm2 = match[8]
+
+///create a constructor for the clocktime object
+function ClockTime(ampm,hour,minute) {
+        if (ampm ==='am'){
+            this.am = true
+            this.pm = false
+        } else {
+            this.am=false
+            this.pm=true
+        }
+        
+        //set constructor properties
+        this.hour = hour;
+        this.minute = minute;
+    }
+    
+//add a prototype method
+ClockTime.prototype.elapsTime = function () {
+    if (this.am) {
+        return (this.hour*60) + this.minute;
+    } else {
+        return (12*60) + (this.hour*60) + this.minute;
+    }
+};
+
+ClockTime.prototype.timeTillEOD = function () {
+    return ((24*60)-this.elapsTime())
+};
+
+
+//set 2 new instances of ClockTimeobjects
+ var time_am = /((\d{1,2}):(\d{1,2}))(am|pm)-((\d{1,2}):(\d{1,2}))(am|pm)/g;
+    match = time_am.exec(string)
+
+ 
+ 
+var time1 = new ClockTime((match[4]),parseInt(match[2]),parseInt(match[3]))
+var time2 = new ClockTime(match[8],parseInt(match[6]),parseInt(match[7]))
+
+if (time1.am && time2.pm){
+    return time2.elapsTime() - time1.elapsTime();
+} else if (time1.pm && time2.am){
+    return time1.timeTillEOD() + time2.elapsTime(); //add the time left in day
+} else if (time1.am && time2.am){
+    if (time1.elapsTime() < time2.elapsTime()){
+      return  time2.elapsTime() -  time1.elapsTime() 
+    } else {
+        return time1.timeTillEOD() + time2.elapsTime()
+    }
+} else if (time1.pm && time2.pm){
+    if (time1.elapsTime()<time2.elapsTime()) {
+        return time2.elapsTime() - time1.elapsTime()
+    } else {
+        return time1.timeTillEOD() + time2.elapsTime()
+    }
+}
+
+
+    
+    
+}
