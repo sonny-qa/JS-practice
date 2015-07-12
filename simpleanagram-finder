@@ -1,0 +1,35 @@
+//function to find the combo abdc in 'abcd'
+
+
+function RecPermute (soFar, rest){
+    
+  
+    if(soFar=="dcba"){
+		//if we get the target, return a true up the stack...
+		console.log(soFar)
+        return true
+		
+    } else {
+        for (var i=0; i<rest.length;i++){
+            
+            var next = soFar+rest[i]
+            var remaining = rest.substr(0,i).concat(rest.substr(i+1))
+            
+			//we've fixed a choice, did we find it?
+            if (RecPermute(next,remaining)){ //this would eval to true, if line 10 gets passed up here
+                        return true;}
+            
+        }
+    } 
+	
+	return false //if we exhaust all the options in the for section without triggering a true, then we must return false - cannot be found
+    
+    
+}
+
+function callrec(str){
+    
+    return RecPermute("",str)
+}
+
+callrec('abcd')
