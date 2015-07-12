@@ -1,0 +1,45 @@
+function merge_sort (array){
+    
+    //split down to atomic elements
+    if (array.length<2){
+        return array
+        
+    } else
+     var mid = Math.floor((array.length)/2)
+     var left = merge_sort(array.slice(0,mid))
+     var right = merge_sort(array.slice(mid,array.length))
+     
+     //then call the merge part
+     return merge(left,right)
+  
+
+}
+
+function merge(left,right){
+    
+    var result =[]
+    
+    while (left.length && right.length) {
+        if (left[0]<right[0]){
+            result.push(left.shift());
+        } else {
+            result.push(right.shift());
+        }
+    }
+  
+    
+    while (left.length){
+        result.push(left.shift());
+    } 
+    while (right.length){
+        result.push(right.shift())
+    }
+  return result
+    
+}
+
+
+
+p = [80,80]
+ 
+returnseclowhigh(p)
