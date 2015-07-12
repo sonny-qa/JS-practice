@@ -1,0 +1,63 @@
+function merge_sort (array){
+    
+    //split down to atomic elements
+    if (array.length<2){
+        return array
+        
+    } else
+     var mid = Math.floor((array.length)/2)
+     var left = merge_sort(array.slice(0,mid))
+     var right = merge_sort(array.slice(mid,array.length))
+     
+     return merge(left,right)
+  
+
+}
+
+function merge(left,right){
+    
+    var result =[]
+    
+    while (left.length && right.length) {
+        if (left[0]<right[0]){
+            result.push(left.shift());
+        } else {
+            result.push(right.shift());
+        }
+    }
+  
+    
+    while (left.length){
+        result.push(left.shift());
+    } 
+    while (right.length){
+        result.push(right.shift())
+    }
+  return result
+    
+}
+
+function returnseclowhigh (array) {
+    
+    results = merge_sort(array) //returns a sorted array!
+    
+  uniqueRes = results.filter(function(item,pos){
+      return results.indexOf(item)==pos;
+      //if the pos of current item == the first instance, it         is not a duplicate, so return
+  })  
+
+
+    var sec_low, sec_high
+    
+    sec_low = uniqueRes[1]
+    sec_high = uniqueRes[uniqueRes.length-2]
+    
+    return sec_low + " " + sec_high
+    
+}
+
+
+
+p = [7, 7, 12, 98, 106]
+ 
+returnseclowhigh(p)
