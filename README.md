@@ -1,2 +1,2 @@
 # JS-practice
-javascript practice 
+javascript practice code 
