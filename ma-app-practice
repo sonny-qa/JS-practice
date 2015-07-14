@@ -1,0 +1,43 @@
+var decryptA = function(message) {
+ 
+ var words = message.split(" ")
+ var result =[]
+ 
+ for (var word in words){
+   var curr_word = words[word]
+   
+   result.push((curr_word.slice((curr_word.length)-1,(curr_word.length))))}
+   
+   return result.join("")
+ 
+};
+
+var decryptB = function(message) {
+   var words = message.split(" ")
+ var result =[]
+ 
+ for (var word in words){
+   
+   var curr_word = words[word]
+   var first, last
+   //last letter
+    last = ((curr_word.slice((curr_word.length-1),(curr_word.length) )))
+   
+   //first letter
+   first = ((curr_word.slice(0,1)))
+   
+   if (last>first){
+       result.push(last)
+   } else {
+       result.push(first)
+   }
+
+ }
+   
+ return result.join("")
+ 
+};
+
+decryptB("wazdee apple love bic nooo more end")
+
+  
